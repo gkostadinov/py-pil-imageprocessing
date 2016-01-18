@@ -6,7 +6,7 @@ Feel free to contribute with anything!
 
 # Requirements
 
-- [https://www.python.org](Python 2.7+)
-- [https://pillow.readthedocs.org](Pillow)
-- [http://www.numpy.org](numpy)
-- [http://matplotlib.org](matplotlib)
+- [Python 2.7+](https://www.python.org)
+- [Pillow](https://pillow.readthedocs.org)
+- [numpy](http://www.numpy.org)
+- [matplotlib](http://matplotlib.org)
