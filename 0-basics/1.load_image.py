@@ -6,6 +6,10 @@ def main():
     # Load an image
     image = Image.open('../lenna.png')
 
+    # Print image information
+    print('Size: %s\nMode: %s\nFormat: %s'
+          % (image.size, image.mode, image.format))
+
     # Visualise it
     image.show()
 
