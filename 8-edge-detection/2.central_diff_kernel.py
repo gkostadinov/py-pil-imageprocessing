@@ -1,4 +1,4 @@
-# Using the same method as in 1.gradient but this time
+# Using the same method as in 1.central_diff but this time
 # the edge detection is done with ImageFilter.Kernel
 from PIL import Image, ImageFilter, ImageChops
 
