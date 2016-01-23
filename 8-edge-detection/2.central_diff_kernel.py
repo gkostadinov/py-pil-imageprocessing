@@ -11,15 +11,15 @@ def apply_edge_detector(input_image):
     # Apply 3x3 center difference filters
     # Apply for X
     kernel_x = (0, 0, 0,
-                -1, 0, 1,
+                1, 0, -1,
                 0, 0, 0)
     kernelx_image = median_image.filter(
         ImageFilter.Kernel((3, 3), kernel_x, scale=2))
 
     # Apply for Y
-    kernel_y = (0, -1, 0,
+    kernel_y = (0, 1, 0,
                 0, 0, 0,
-                0, 1, 0)
+                0, -1, 0)
     kernely_image = median_image.filter(
         ImageFilter.Kernel((3, 3), kernel_y, scale=2))
 
