@@ -50,15 +50,15 @@ def get_sobel_histogram(image):
     median_filter = ImageFilter.MedianFilter(size=3)
     median_image = grayscale_image.filter(median_filter)
 
-    sobel_x = [-1, 0, 1,
+    sobel_x = (-1, 0, 1,
                -2, 0, 2,
-               -1, 0, 1]
+               -1, 0, 1)
     sobel_kernel_x = ImageFilter.Kernel((3, 3), sobel_x, scale=1)
     sobel_image_x = median_image.filter(sobel_kernel_x)
 
-    sobel_y = [-1, -2, -1,
+    sobel_y = (1, 2, 1,
                0, 0, 0,
-               1, 2, 1]
+               -1, -2, -1)
     sobel_kernel_y = ImageFilter.Kernel((3, 3), sobel_y, scale=1)
     sobel_image_y = median_image.filter(sobel_kernel_y)
 
