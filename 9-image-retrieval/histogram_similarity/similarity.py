@@ -17,7 +17,7 @@ def save_histogram(histogram, output_file):
     plt.ylabel('# pixels')
     plt.xlim([0, len(histogram)])
     plt.plot(histogram)
-    output_path = os.path.join('histograms', output_file)
+    output_path = os.path.join(HISTOGRAMS_DIR, output_file)
     plt.savefig(output_path)
     plt.close()
 
@@ -158,7 +158,7 @@ def generate_html_page(query_image, similarities):
 
 def main():
     images = load_images()
-    query_imagename = '5.jpeg'
+    query_imagename = '1.jpeg'
     similarities = find_similarities(query_imagename, images)
 
     generate_html_page(images[query_imagename], similarities)
