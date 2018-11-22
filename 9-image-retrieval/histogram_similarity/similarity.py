@@ -26,24 +26,24 @@ def save_histogram(histogram, output_file):
 
 def normalize_histogram(histogram):
     # Normalizes a given histogram making it with vector distance 1
-    np_histogram = np.array(histogram)
-    normalized_histogram = np_histogram / np.linalg.norm(np_histogram)
+    np_histogram = np.array(histogram, dtype=np.float32)
+    normalized_histogram = np_histogram / sum(histogram)
 
     return normalized_histogram.tolist()
 
 
-def get_image_histogram(image):
+def get_image_histogram(image, image_filename):
     # Get the histogram and normalize it
     # so that the histogram vector length is 1
     # (making it much better for similarity comparison)
     histogram = normalize_histogram(image.histogram())
     histogram_path = save_histogram(
-        histogram, os.path.basename(image.filename))
+        histogram, os.path.basename(image_filename))
 
     return histogram, histogram_path
 
 
-def get_sobel_histogram(image):
+def get_sobel_histogram(image, image_filename):
     # See 8-edge-detection/3.sobel
     grayscale_image = image.convert('L')
 
@@ -71,7 +71,7 @@ def get_sobel_histogram(image):
     sobel_histogram.extend(sobel_histogram_y)
 
     sobel_histogram_path = save_histogram(
-        sobel_histogram, 'sobel_' + os.path.basename(image.filename))
+        sobel_histogram, 'sobel_' + os.path.basename(image_filename))
 
     return sobel_histogram, sobel_histogram_path
 
@@ -87,8 +87,10 @@ def load_images():
 
             # Load the image and get histograms
             image = Image.open(image_filepath)
-            histogram, histogram_path = get_image_histogram(image)
-            sobel_histogram, sobel_histogram_path = get_sobel_histogram(image)
+            histogram, histogram_path = get_image_histogram(
+                image, image_filename)
+            sobel_histogram, sobel_histogram_path = get_sobel_histogram(
+                image, image_filename)
 
             images[image_filename] = {
                 'image_path': image_filepath,
