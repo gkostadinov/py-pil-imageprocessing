@@ -32,10 +32,10 @@ def main():
     input_data = np.random.randint(0, MAX_INT, (1, 2)).astype(np.float32)
     plt.scatter(input_data[:, 0], input_data[:, 1], s=100, c='g', marker='o')
 
-    knn = cv2.KNearest()
-    knn.train(train_data, labels)
+    knn = cv2.ml.KNearest_create()
+    knn.train(train_data, cv2.ml.ROW_SAMPLE, labels)
     # Find k=3 nearest neighbours and classify the given input data
-    retval, results, neighbours, dists = knn.find_nearest(input_data, k=3)
+    retval, results, neighbours, dists = knn.findNearest(input_data, k=5)
 
     classified_label = get_human_label(results[0][0])
     print('The input point (%s, %s) is %s'

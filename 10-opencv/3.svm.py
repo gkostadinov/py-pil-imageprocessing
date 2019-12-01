@@ -15,11 +15,11 @@ def main():
                           dtype=np.float32)
     labels = np.array([0, 0, 0, 0, 0,
                        1, 1, 1, 1, 1],
-                      dtype=np.float32)
+                      dtype=np.int)
 
     # Initialize the SVM and train on the training data
-    svm = cv2.SVM()
-    svm.train(train_data, labels)
+    svm = cv2.ml.SVM_create()
+    svm.train(train_data, cv2.ml.ROW_SAMPLE, labels)
 
     # Create a sample input data
     input_data = np.array(
@@ -37,7 +37,7 @@ def main():
     # Plot the input data - green
     plt.scatter(input_data[:, 0], input_data[:, 1], s=50, c='g', marker='o')
 
-    results = svm.predict_all(input_data)
+    retval, results = svm.predict(input_data)
 
     for i, result in enumerate(results.tolist()):
         print('Point #%s (%s, %s) classified as: %s'

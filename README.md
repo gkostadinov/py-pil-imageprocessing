@@ -6,7 +6,8 @@ Feel free to contribute with anything!
 
 # Requirements
 
-- [Python 2.7+](https://www.python.org)
+- [Python 3+](https://www.python.org)
 - [Pillow](https://pillow.readthedocs.org)
 - [numpy](http://www.numpy.org)
 - [matplotlib](http://matplotlib.org)
+- [OpenCV 3+](https://opencv.org)

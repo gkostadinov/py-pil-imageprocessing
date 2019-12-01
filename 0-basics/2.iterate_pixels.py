@@ -22,7 +22,7 @@ def main():
     pixel_data = image.getdata()
     for i, pixel in enumerate(pixel_data):
         x = i % width
-        y = i / width
+        y = i // width
 
         r, g, b = pixel
         print('image[%s, %s] = rgb(%s, %s, %s)' % (x, y, r, g, b))

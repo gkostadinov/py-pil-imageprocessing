@@ -117,7 +117,7 @@ def find_similarities(query_imagename, images):
     query_image = images[query_imagename]
 
     similarities = []
-    for imagename, image in images.iteritems():
+    for imagename, image in images.items():
         if imagename == query_imagename:
             continue
 

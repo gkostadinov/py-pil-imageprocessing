@@ -2,7 +2,7 @@
 # edge detection works. The method used is central differences.
 # https://en.wikipedia.org/wiki/Edge_detection
 import math
-from PIL import Image
+from PIL import Image, ImageFilter
 
 
 def apply_edge_detector(input_image):
@@ -47,7 +47,11 @@ def apply_edge_detector(input_image):
 def main():
     # Edge detection works with grayscale images so we convert it to luminosity
     input_image = Image.open('../lenna.png').convert('L')
-    output_image = apply_edge_detector(input_image)
+    size = 3
+    median_filter = ImageFilter.MedianFilter(size)
+    median_filter_image = input_image.filter(median_filter)
+    median_filter_image.show('Median filter, size: %sx%s' % (size, size))
+    output_image = apply_edge_detector(median_filter_image)
     output_image.show('Edge detection')
 
 if __name__ == '__main__':
