@@ -27,7 +27,7 @@ def save_histogram(histogram, output_file):
 def normalize_histogram(histogram):
     # Normalizes a given histogram making it with vector distance 1
     np_histogram = np.array(histogram, dtype=np.float32)
-    normalized_histogram = np_histogram / sum(histogram)
+    normalized_histogram = np_histogram / np.linalg.norm(histogram)
 
     return normalized_histogram.tolist()
 
@@ -67,8 +67,7 @@ def get_sobel_histogram(image, image_filename):
     sobel_histogram_y = normalize_histogram(sobel_image_y.histogram())
 
     # Concatenate into a single histogram
-    sobel_histogram = sobel_histogram_x
-    sobel_histogram.extend(sobel_histogram_y)
+    sobel_histogram = sobel_histogram_x + sobel_histogram_y
 
     sobel_histogram_path = save_histogram(
         sobel_histogram, 'sobel_' + os.path.basename(image_filename))
@@ -128,6 +127,7 @@ def find_similarities(query_imagename, images):
             query_image['sobel_histogram'], image['sobel_histogram'])
 
         similarity_dist = 0.5 * histogram_dist + 0.5 * sobel_histogram_dist
+
         similarities.append((image, similarity_dist))
 
     return sorted(similarities, key=lambda x: x[1])
